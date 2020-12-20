@@ -25,7 +25,7 @@ $(eval $(call sec_dtbo_build, \
 
 endif
 
-dts-dirs += y2q
+dts-dirs += c2q
 
 
 always          := $(dtb-y)
