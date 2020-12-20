@@ -10,3 +10,22 @@ config MACH_Y2Q_USA_SINGLE
 	help
 	  Support for Samsung Y2Q USA SQ device.
 
+config SEC_C1Q_PROJECT
+	depends on ARCH_KONA
+	default n
+	bool "Samsung C1Q Project"
+	help
+	  Support for Samsung C1Q Project
+
+config SEC_C2Q_PROJECT
+	depends on ARCH_KONA
+	default n
+	bool "Samsung C2Q Project"
+	help
+	  Support for Samsung C2Q Project
+
+menu "Samsung Canvas"
+depends on SEC_C1Q_PROJECT || SEC_C2Q_PROJECT
+source "arch/arm64/Kconfig.canvas"
+endmenu
+
