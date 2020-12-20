@@ -1,0 +1,120 @@
+#!/bin/bash
+
+BUILD_CROSS_COMPILE=/home/mentalmuso/kernel/toolchain/4.9/bin/aarch64-linux-android-
+KERNEL_LLVM_BIN=/home/mentalmuso/kernel/toolchain/clang10/bin/clang
+CLANG_TRIPLE=aarch64-linux-gnu-
+KERNEL_MAKE_ENV="DTC_EXT=$(pwd)/tools/dtc CONFIG_BUILD_ARM64_DT_OVERLAY=y VARIANT_DEFCONFIG=vendor/c2q/kona_sec_c2q_usa_singlew_defconfig"
+KERN=/home/mentalmuso/kernel/android_kernel_samsung_cxqr
+TODAY=`date +%Y-%m-%d.%H:%M`
+WETA=$KERN/WETA
+AKOLDZIP=$WETA/weta_anykernel/WETA_Kernel_*
+AKOLDIMG=$WETA/weta_anykernel/zImage
+TWRP=/home/mentalmuso/TWRP-X
+MEGA=/home/mentalmuso/MEGAsync
+
+### make clean
+echo ""
+echo "Clean the toilet?? "
+echo "y or n "
+read cleantoilet
+if [ "$cleantoilet" != "${cleantoilet#[y]}" ] ;then
+    make CROSS_COMPILE=$BUILD_CROSS_COMPILE REAL_CC=$KERNEL_LLVM_BIN CLANG_TRIPLE=$CLANG_TRIPLE clean && make CROSS_COMPILE=$BUILD_CROSS_COMPILE REAL_CC=$KERNEL_LLVM_BIN CLANG_TRIPLE=$CLANG_TRIPLE mrproper
+    echo " <--->"
+    echo " - Cleaned the rim"
+else
+    echo ""
+    echo " - Dirty bowl"
+fi
+###
+
+echo ""
+echo "Which device boss? "
+echo "1. N986U1 "
+echo "2. N981U1 "
+echo ""
+read dev
+if [ "$dev" != "${dev#[1]}" ] ;then
+    echo "N986U1 selected"
+    DEVICEE=N986U1
+    DEVICE=c2q
+    DEFCONFIG=weta_c2q_defconfig
+    VER=3.0_C2Q
+elif [ "$dev" != "${dev#[2]}" ] ;then
+    echo "N981U1 selected"
+    DEVICEE=N981U1
+    DEVICE=c1q
+    DEFCONFIG=c1q_usa_openw_defconfig
+    VER=2.2_C1Q
+fi
+
+export ANDROID_MAJOR_VERSION=q
+export PLATFORM_VERSION=10.0.0
+export ARCH=arm64
+
+if [ ! -d "out" ]; then
+    mkdir out
+fi
+if [ ! -d "$WETA/$DEVICE" ]; then
+    mkdir $WETA/$DEVICE
+fi
+
+### enforcing version
+DEFCONFIGG=$KERN/arch/arm64/configs/vendor/$DEFCONFIG
+echo ""
+echo "SELINUX Permissive? "
+echo "y or n "
+read perm
+if [ "$perm" != "${perm#[y]}" ] ;then
+     sed -i 's/# CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE is not set/CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y/g' $DEFCONFIGG
+else
+     sed -i 's/CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y/# CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE is not set/g' $DEFCONFIGG
+fi
+###
+
+make -j16 -C $(pwd) O=$(pwd)/out $KERNEL_MAKE_ENV ARCH=arm64 CROSS_COMPILE=$BUILD_CROSS_COMPILE REAL_CC=$KERNEL_LLVM_BIN CLANG_TRIPLE=$CLANG_TRIPLE vendor/$DEFCONFIG
+time make -j16 -C $(pwd) O=$(pwd)/out $KERNEL_MAKE_ENV ARCH=arm64 CROSS_COMPILE=$BUILD_CROSS_COMPILE REAL_CC=$KERNEL_LLVM_BIN CLANG_TRIPLE=$CLANG_TRIPLE
+
+cp out/arch/arm64/boot/Image.gz $(pwd)/arch/arm64/boot/Image.gz
+cp $(pwd)/out/arch/arm64/boot/Image.gz-dtb $(pwd)/WETA/$DEVICE/Image.gz-dtb
+
+cd WETA/AIK-Linux
+./cleanup.sh
+rm boot.img
+if [ "$dev" != "${dev#[1]}" ] ;then
+    cp $WETA/bootimg/986boot.img $WETA/AIK-Linux/boot.img
+elif [ "$dev" != "${dev#[2]}" ] ;then
+    cp $WETA/bootimg/981boot.img $WETA/AIK-Linux/boot.img
+fi
+./unpackimg.sh
+cp $WETA/$DEVICE/Image-dtb $WETA/AIK-Linux/split_img/boot.img-zImage
+./repackimg.sh
+if [ "$perm" != "${perm#[y]}" ] ;then
+    mv image-new.img $WETA/$DEVICE/WETA_Kernel-$VER-permissive.img
+else
+    mv image-new.img $WETA/$DEVICE/WETA_Kernel-$VER.img
+fi
+
+echo ""
+echo "Upload to MEGAsync? "
+echo "y or n "
+read mega
+if [ "$mega" != "${mega#[y]}" ] ;then
+    if [ "$perm" != "${perm#[y]}" ] ;then
+        cp $WETA/$DEVICE/WETA_Kernel-$VER-permissive.img $MEGA
+    else
+        cp $WETA/$DEVICE/WETA_Kernel-$VER.img $MEGA
+    fi
+    echo " - uploading"
+else
+    echo " - no copy copy"
+fi
+
+cd .. && cd ..
+
+echo " "
+echo "###################################"
+echo "# Kernel img found in WETA folder #"
+echo "###################################"
+echo " "
+
+
