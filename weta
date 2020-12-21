@@ -39,7 +39,7 @@ if [ "$dev" != "${dev#[1]}" ] ;then
     DEVICEE=N986U1
     DEVICE=c2q
     DEFCONFIG=weta_c2q_defconfig
-    VER=3.0_C2Q
+    VER=3.02_C2Q
 elif [ "$dev" != "${dev#[2]}" ] ;then
     echo "N981U1 selected"
     DEVICEE=N981U1
@@ -75,7 +75,6 @@ fi
 make -j16 -C $(pwd) O=$(pwd)/out $KERNEL_MAKE_ENV ARCH=arm64 CROSS_COMPILE=$BUILD_CROSS_COMPILE REAL_CC=$KERNEL_LLVM_BIN CLANG_TRIPLE=$CLANG_TRIPLE vendor/$DEFCONFIG
 time make -j16 -C $(pwd) O=$(pwd)/out $KERNEL_MAKE_ENV ARCH=arm64 CROSS_COMPILE=$BUILD_CROSS_COMPILE REAL_CC=$KERNEL_LLVM_BIN CLANG_TRIPLE=$CLANG_TRIPLE
 
-cp out/arch/arm64/boot/Image.gz $(pwd)/arch/arm64/boot/Image.gz
 cp $(pwd)/out/arch/arm64/boot/Image.gz-dtb $(pwd)/WETA/$DEVICE/Image.gz-dtb
 
 cd WETA/AIK-Linux

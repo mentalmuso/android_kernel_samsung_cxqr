@@ -1257,9 +1257,9 @@ static void gc_worker(struct work_struct *work)
 					tmp->npa_timeout = ((u32)(jiffies)) + (get_intermediate_timeout() * HZ);
 					knox_collect_conntrack_data(tmp, NCM_FLOW_TYPE_INTERMEDIATE, 20);
 				}
+#endif
 			}
 			// SEC_PRODUCT_FEATURE_KNOX_SUPPORT_NPA }
-#endif
 			if (nf_conntrack_max95 == 0 || gc_worker_skip_ct(tmp))
 				continue;
 
@@ -1363,6 +1363,7 @@ __nf_conntrack_alloc(struct net *net,
 	struct timespec open_timespec;
 	// SEC_PRODUCT_FEATURE_KNOX_SUPPORT_NPA }
 #endif
+
 	/* We don't want any race condition at early drop stage */
 	atomic_inc(&net->ct.count);
 
@@ -1386,6 +1387,7 @@ __nf_conntrack_alloc(struct net *net,
 		goto out;
 
 	spin_lock_init(&ct->lock);
+
 #ifdef CONFIG_KNOX_NCM
 	// SEC_PRODUCT_FEATURE_KNOX_SUPPORT_NPA {
 	/* initialize the conntrack structure members when memory is allocated */
@@ -1410,6 +1412,7 @@ __nf_conntrack_alloc(struct net *net,
 	}
 	// SEC_PRODUCT_FEATURE_KNOX_SUPPORT_NPA }
 #endif
+
 	ct->tuplehash[IP_CT_DIR_ORIGINAL].tuple = *orig;
 	ct->tuplehash[IP_CT_DIR_ORIGINAL].hnnode.pprev = NULL;
 	ct->tuplehash[IP_CT_DIR_REPLY].tuple = *repl;

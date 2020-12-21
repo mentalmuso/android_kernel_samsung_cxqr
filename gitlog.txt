@@ -1,3 +1,33 @@
+commit 77d33921bf5affa3b8661be6ef218b8b08690bdf
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:19:41 2020 -0600
+
+    proc: remove cts/safetynet flags
+
+commit a1696caa4b10799547de16235ac14cda786aff6b
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:10:58 2020 -0600
+
+    schedutil gov as default, defconfig
+
+commit e32a782222767ec11499a6ee2596690f90ec3ec8
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:09:38 2020 -0600
+
+    enable ttl, defconfig
+
+commit 61b25db9975e3adcfced7d99842b223d35ab221b
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:08:29 2020 -0600
+
+    knox ncm switchable, defconfig
+
+commit 27501900da4f370dabe18112690f7f9f08a2b5b7
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:07:35 2020 -0600
+
+    knox ncm switchable
+
 commit 4de8ac8c5ac10e1de4524ece5fafaa043d8468a0
 Author: mentalmuso <mentalmuso@example.com>
 Date:   Sat Dec 19 22:43:07 2020 -0600
