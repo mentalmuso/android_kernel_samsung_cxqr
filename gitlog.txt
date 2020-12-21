@@ -1,0 +1,103 @@
+commit 4de8ac8c5ac10e1de4524ece5fafaa043d8468a0
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:43:07 2020 -0600
+
+    weta stuff
+
+commit 5b1acdc4b11e31e7e9ad98449cfc4683c79f2343
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:39:51 2020 -0600
+
+    net/wireguard: add wireguard importer
+    
+    Signed-off-by: mentalmuso <mentalmuso@example.com>
+
+commit b257e5f7fa64f4478560be877a3c827f140402df
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:36:02 2020 -0600
+
+    disable crc check
+
+commit e878103b2a7fd35a41a441e05d09773ce7c708c5
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:30:57 2020 -0600
+
+    force stock defconfig to stop tamper nag
+
+commit 4cc474a0fa04ae8bcb2cb2c8958500e8ce2bc75d
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:28:05 2020 -0600
+
+    Fix MTP for twrp, defconfig
+
+commit 19d653e6d2dce34269197022bbee4fd23e5ca4ed
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:26:43 2020 -0600
+
+    Fix MTP for twrp
+
+commit c5c2d1d01a6ee59e699fc745cb73720604cd0279
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:24:18 2020 -0600
+
+    remove dirty localversion
+
+commit 0d904c347318518b30259280455d3e1383f4d568
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:23:08 2020 -0600
+
+    disable avb in dts #2
+
+commit c75bf2ea7758b967d20486d31288ca83d61f8d10
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:21:41 2020 -0600
+
+    disable avb in dts
+
+commit 05a7f7b5aee004465ac58c1fa21c54ba9c05b70b
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:20:23 2020 -0600
+
+    Add switchable selinux, fully permissive
+
+commit 4826b7faa22cba2c8e0a1994ffff398ea144d463
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:18:32 2020 -0600
+
+    Defconfig to C2Q, disable samsung sec
+
+commit 5fe319bf8ae084f10e3adeab3172e1880315927a
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:11:31 2020 -0600
+
+    compress kernel image gz
+
+commit 308286d1935f330c233bfc574f9443d453852f93
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:09:12 2020 -0600
+
+    Build Android DTC
+
+commit 15ef70cf484ae40fadc579a012506b49a9e73b8e
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:05:18 2020 -0600
+
+    add dts canvas kconfig
+
+commit 36b19f931c6beae1f1bb0bca5473c067e5c7d51f
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:02:50 2020 -0600
+
+    duplicate config, rename, label, build dt
+
+commit aff16299f47f49fb5e147b95bcdfda08063fa220
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 21:58:21 2020 -0600
+
+    build dts for c2q
+
+commit 0ec9e2a5bdb9b39c5c7f61f1380fafdb035c89fd
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 21:54:14 2020 -0600
+
+    initial push, s20 R source

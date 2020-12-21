@@ -24,6 +24,7 @@ if [ "$cleantoilet" != "${cleantoilet#[y]}" ] ;then
 else
     echo ""
     echo " - Dirty bowl"
+    rm -rf out/techpack/*
 fi
 ###
 
@@ -86,7 +87,7 @@ elif [ "$dev" != "${dev#[2]}" ] ;then
     cp $WETA/bootimg/981boot.img $WETA/AIK-Linux/boot.img
 fi
 ./unpackimg.sh
-cp $WETA/$DEVICE/Image-dtb $WETA/AIK-Linux/split_img/boot.img-zImage
+cp $WETA/$DEVICE/Image.gz-dtb $WETA/AIK-Linux/split_img/boot.img-zImage
 ./repackimg.sh
 if [ "$perm" != "${perm#[y]}" ] ;then
     mv image-new.img $WETA/$DEVICE/WETA_Kernel-$VER-permissive.img
