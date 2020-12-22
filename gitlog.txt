@@ -131,3 +131,238 @@ Author: mentalmuso <mentalmuso@example.com>
 Date:   Sat Dec 19 21:54:14 2020 -0600
 
     initial push, s20 R source
+commit 6ab34a826900d37cecba9778f59511816078812e
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Tue Dec 22 10:32:56 2020 -0600
+
+    3.04
+
+commit 8cd805e1c48c41c7e204835671a98a8e5048f1ee
+Author: tbalden <illespal@gmail.com>
+Date:   Sat Sep 8 17:20:05 2018 -0700
+
+    kcal: pie: fix used pcc setup for sde path
+
+commit 04675205e592f03f62882230d1189f8e25b1e9d3
+Author: flar2 <asegaert@gmail.com>
+Date:   Sat Jun 23 00:26:34 2018 -0400
+
+    drm: msm: kcal: hue, saturation, value and contrast adjustments
+
+commit 3e5044dcebb08d4dea7ed499413737e24cfb3a40
+Author: Francisco Franco <franciscofranco.1990@gmail.com>
+Date:   Thu Jun 21 15:51:33 2018 +0000
+
+    drm: msm: kcal: export rgb to userspace and clean it up
+    
+    Signed-off-by: Francisco Franco <franciscofranco.1990@gmail.com>
+
+commit 37a84259769b2c05d34f12c5840cf9b9c41010f0
+Author: tbalden <illespal@gmail.com>
+Date:   Thu Jun 14 15:32:00 2018 -0700
+
+    kcal: sde_hw: color proc v4: add RGB bias
+    
+    Implement the RGB control part of kcal in new sde driver.
+    Color mask bias can be applied at the points identified.
+    Add internal values to be hooked for sysfs or other
+    means of control.
+    
+    original concept: @savoca
+    kernel 4.9 / sde_hw: @tbalden
+
+commit 5c18e8f08e6e10fc9b3f5391274406f30e5ade8e
+Author: Tanish Manku <tanish2k09.dev@gmail.com>
+Date:   Thu Nov 28 14:15:21 2019 -0500
+
+    KLAPSE : Make default flow_freq value configurable at compile time from klapse.h
+    
+    - NOTE : Flow freq is a device-dependent timeout value. It depends on how fast KCAL reacts to a change in values, or in other words, how fast can you change colors in KCAL without having them not appear on screen (aka "RGB frame skips")
+    - NOTE : Flow freq should be reduced if KCAL reacts faster, left at 360 is unsure, increased for very high latencies (usually in MDSS)
+    - NOTE : Flow freq can be changed at runtime as well, so developers can find the perfect value that isn't too slow and isn't too sudden either
+    - NOTE : Flow freq is 360 (ms) by default, because of my testing on OnePlus 6 (enchilada) on stock ROM with custom display calibration
+    - NOTE : More GPU pulses can help most devices refresh KCAL faster, and indirectly "flow" smoother
+    
+    Signed-off-by: Tanish Manku <tanish2k09.dev@gmail.com>
+    Signed-off-by: kingbri <bdashore3@gmail.com>
+
+commit 7faec8eaed991a4bd3bf53afcd178b6698c7b9a3
+Author: Francisco Franco <franciscofranco.1990@gmail.com>
+Date:   Wed Jun 27 00:53:49 2018 +0000
+
+    drm: msm: kcal: make the userspace module param vars static and use short instead of integers
+    
+    Same reasoning as https://github.com/franciscofranco/enchilada/commit/20461e4aef0b54ea11c84223db4f59de14aabe57
+    
+    There's no point in using integers where a short is big enough.
+    
+    Signed-off-by: Francisco Franco <franciscofranco.1990@gmail.com>
+    Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+
+commit 5b67fa309722d1e767cec3e8ec7b371c903ced2f
+Author: Tanish Manku <tanish2k09.dev@gmail.com>
+Date:   Thu Nov 28 14:10:04 2019 -0500
+
+    Drivers: Introduce K-lapse v5.0
+    
+    - Introducing k-lapse "flow", a brightness-based scaling mode QOL enhancement that scales RGB points by 1 smoothly instant of instantly taking effect
+    - Major code refactor to better match the Linux Kernel coding style (huge thanks to kdrag0n for initial overall patch and general guidance)
+    - Switched from SYS ATTR to module_param_cb and kernel param structs
+    - Shortened the code from 1k lines to 0.6k without compromising any logic or feature
+    - Changed tunable naming for sysfs to convey the idea of the function in a better way
+    - Added minute-level support for automation. Yes, you can now start or stop at, say 16:49
+    - Dimmer factor (previously known as brightness_factor) is now allowed to be set as a percentage value, ranging from 10 to 100
+    - Updated README documentation to match v5.0 release
+    - Integrated MDSS code with a switch in klapse.h (see kcal-mdss-demo branch for full implementation in older version)
+    - Changed some default config values
+    - Revised dimmer logic to fix "dimmer value multiplicative effect" for some users. The issue was changing brightness_factor values multiple times stacked them on top of each other, eventually causing the RGB to hit their minimum limit (usually 20 in KCAL), and not being able to restore full RGB without a pulse
+    
+    Signed-off-by: Tanish Manku <tanish2k09.dev@gmail.com>
+    [kingbri: Add K-Lapse's README into Documentation/K-Lapse and move files around for a cleaner commit]
+    Signed-off-by: kingbri <bdashore3@gmail.com>
+
+commit c8c42c8454b753078b61fde7bdd160a2142361e6
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Tue Dec 22 09:39:56 2020 -0600
+
+    dunno
+
+commit cde69f17a84b06fc4ee135d119ff1e8b4128ffe5
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Mon Dec 21 07:25:04 2020 -0600
+
+    fix knox_ncm derp
+
+commit 77d33921bf5affa3b8661be6ef218b8b08690bdf
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:19:41 2020 -0600
+
+    proc: remove cts/safetynet flags
+
+commit a1696caa4b10799547de16235ac14cda786aff6b
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:10:58 2020 -0600
+
+    schedutil gov as default, defconfig
+
+commit e32a782222767ec11499a6ee2596690f90ec3ec8
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:09:38 2020 -0600
+
+    enable ttl, defconfig
+
+commit 61b25db9975e3adcfced7d99842b223d35ab221b
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:08:29 2020 -0600
+
+    knox ncm switchable, defconfig
+
+commit 27501900da4f370dabe18112690f7f9f08a2b5b7
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sun Dec 20 18:07:35 2020 -0600
+
+    knox ncm switchable
+
+commit 4de8ac8c5ac10e1de4524ece5fafaa043d8468a0
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:43:07 2020 -0600
+
+    weta stuff
+
+commit 5b1acdc4b11e31e7e9ad98449cfc4683c79f2343
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:39:51 2020 -0600
+
+    net/wireguard: add wireguard importer
+    
+    Signed-off-by: mentalmuso <mentalmuso@example.com>
+
+commit b257e5f7fa64f4478560be877a3c827f140402df
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:36:02 2020 -0600
+
+    disable crc check
+
+commit e878103b2a7fd35a41a441e05d09773ce7c708c5
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:30:57 2020 -0600
+
+    force stock defconfig to stop tamper nag
+
+commit 4cc474a0fa04ae8bcb2cb2c8958500e8ce2bc75d
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:28:05 2020 -0600
+
+    Fix MTP for twrp, defconfig
+
+commit 19d653e6d2dce34269197022bbee4fd23e5ca4ed
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:26:43 2020 -0600
+
+    Fix MTP for twrp
+
+commit c5c2d1d01a6ee59e699fc745cb73720604cd0279
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:24:18 2020 -0600
+
+    remove dirty localversion
+
+commit 0d904c347318518b30259280455d3e1383f4d568
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:23:08 2020 -0600
+
+    disable avb in dts #2
+
+commit c75bf2ea7758b967d20486d31288ca83d61f8d10
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:21:41 2020 -0600
+
+    disable avb in dts
+
+commit 05a7f7b5aee004465ac58c1fa21c54ba9c05b70b
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:20:23 2020 -0600
+
+    Add switchable selinux, fully permissive
+
+commit 4826b7faa22cba2c8e0a1994ffff398ea144d463
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:18:32 2020 -0600
+
+    Defconfig to C2Q, disable samsung sec
+
+commit 5fe319bf8ae084f10e3adeab3172e1880315927a
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:11:31 2020 -0600
+
+    compress kernel image gz
+
+commit 308286d1935f330c233bfc574f9443d453852f93
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:09:12 2020 -0600
+
+    Build Android DTC
+
+commit 15ef70cf484ae40fadc579a012506b49a9e73b8e
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:05:18 2020 -0600
+
+    add dts canvas kconfig
+
+commit 36b19f931c6beae1f1bb0bca5473c067e5c7d51f
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 22:02:50 2020 -0600
+
+    duplicate config, rename, label, build dt
+
+commit aff16299f47f49fb5e147b95bcdfda08063fa220
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 21:58:21 2020 -0600
+
+    build dts for c2q
+
+commit 0ec9e2a5bdb9b39c5c7f61f1380fafdb035c89fd
+Author: mentalmuso <mentalmuso@example.com>
+Date:   Sat Dec 19 21:54:14 2020 -0600
+
+    initial push, s20 R source
