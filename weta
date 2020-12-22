@@ -60,16 +60,16 @@ if [ ! -d "$WETA/$DEVICE" ]; then
 fi
 
 ### enforcing version
-DEFCONFIGG=$KERN/arch/arm64/configs/vendor/$DEFCONFIG
-echo ""
-echo "SELINUX Permissive? "
-echo "y or n "
-read perm
-if [ "$perm" != "${perm#[y]}" ] ;then
-     sed -i 's/# CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE is not set/CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y/g' $DEFCONFIGG
-else
-     sed -i 's/CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y/# CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE is not set/g' $DEFCONFIGG
-fi
+#DEFCONFIGG=$KERN/arch/arm64/configs/vendor/$DEFCONFIG
+#echo ""
+#echo "SELINUX Permissive? "
+#echo "y or n "
+#read perm
+#if [ "$perm" != "${perm#[y]}" ] ;then
+#     sed -i 's/# CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE is not set/CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y/g' $DEFCONFIGG
+#else
+#     sed -i 's/CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y/# CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE is not set/g' $DEFCONFIGG
+#fi
 ###
 
 make -j16 -C $(pwd) O=$(pwd)/out $KERNEL_MAKE_ENV ARCH=arm64 CROSS_COMPILE=$BUILD_CROSS_COMPILE REAL_CC=$KERNEL_LLVM_BIN CLANG_TRIPLE=$CLANG_TRIPLE vendor/$DEFCONFIG
